@@ -67,6 +67,10 @@
     audio.play();
   }
 
+//actually dont need Array.from here I think..
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key =>
+    key.addEventListener('transitioned', removeTransition));
   window.addEventListener('keydown', playSound);
 </script>
 
