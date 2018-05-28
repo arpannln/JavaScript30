@@ -67,10 +67,15 @@
     audio.play();
   }
 
+  const removeTransition = (e) => {
+    console.log(e);
+    e.target.classList.remove('playing');
+  }
+
 //actually dont need Array.from here I think..
-  const keys = document.querySelectorAll('.key');
+  const keys = Array.from(document.querySelectorAll('.key'));
   keys.forEach(key =>
-    key.addEventListener('transitioned', removeTransition));
+    key.addEventListener('transitionend', removeTransition));
   window.addEventListener('keydown', playSound);
 </script>
 
