@@ -35,6 +35,9 @@
 <script>
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
+  console.log(scoreBoard);
+  console.log(holes);
+  const button = document.querySelector('button');
   const moles = document.querySelectorAll('.mole');
   let lastHole;
   let timeUp = false;
@@ -44,8 +47,10 @@
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
+    button.disabled = true;
     peep();
     setTimeout(() => timeUp = true, 10000);
+    setTimeout(() => button.disabled = false, 10000);
   }
 
   function randomTime(min, max) {
@@ -73,16 +78,17 @@
     }, time);
   }
 
+  moles.forEach( (mole) => {
+    mole.addEventListener('click', bonk)
+  });
+
   function bonk(e) {
     if (!e.isTrusted) return;
     score++;
     this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
   }
-  
-  moles.forEach( (mole) => {
-    mole.addEventListener('click', bonk)
-  });
+
 
 
 </script>
